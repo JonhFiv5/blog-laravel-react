@@ -1,0 +1,10 @@
+@import "../../_colors.css";
+
+.blog_navbar {
+    background-color: var(--main-blue);
+}
+
+.blog_navbar_text {
+    color: white;
+    font-weight: bold;
+}
