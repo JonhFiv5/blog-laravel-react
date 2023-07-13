@@ -1,0 +1,8 @@
+.image_preview {
+    width: 30%;
+    margin-top: 1em;
+}
+
+.validation_error {
+    color: red;
+}

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Utils\Image;
 
 class PostController extends Controller
 {
@@ -20,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Post/Create', ['action' => route('post.store')]);
     }
 
     /**
@@ -28,7 +30,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'cover_image' => 'image|nullable'
+        ]);
+
+        $image = $request->file('cover_image');
+        $imageName = Image::SaveImage($image);
+
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'cover_image' => $imageName,
+            'user_id' => auth()->user()->id
+        ]);
+
+        return to_route('post.create');
     }
 
     /**
@@ -62,4 +80,5 @@ class PostController extends Controller
     {
         //
     }
+
 }

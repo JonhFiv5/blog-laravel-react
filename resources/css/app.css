@@ -1,3 +1,15 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+@import "_colors.css";
+
+.confirmation-button {
+    background-color: var(--light-blue);
+    color: var(--dark-grey);
+}
+
+.confirmation-button:hover {
+    background-color: var(--dark-blue);
+    color: white;
+}
