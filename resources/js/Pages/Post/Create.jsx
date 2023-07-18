@@ -5,10 +5,7 @@ import Form from '../../Components/Post/Form';
 export default function Create({ action }) {
     return (
         <>
-            <Head>
-                <title>New Post</title>
-            </Head>
-            <BlogLayout>
+            <BlogLayout title="New Post">
                 <h1>New Post</h1>
                 <Form action={action} />
             </BlogLayout>
