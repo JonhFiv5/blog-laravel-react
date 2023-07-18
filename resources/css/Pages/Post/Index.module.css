@@ -1,0 +1,17 @@
+@import "@/../css/_colors.css";
+
+.main_title_container {
+    display: flex;
+    justify-content: center;
+}
+
+.main_title {
+    color: var(--dark-blue);
+    font-size: 4em;
+}
+
+.posts_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

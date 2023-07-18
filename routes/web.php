@@ -17,14 +17,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [PostController::class, 'index'])->name('post.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -36,6 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('post', PostController::class);
+Route::resource('post', PostController::class)->except('index');
 
 require __DIR__.'/auth.php';

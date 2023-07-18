@@ -1,0 +1,10 @@
+@import "@/../css/_colors.css";
+
+.card_container {
+    margin: 1em;
+    width: 20%;
+}
+
+.card_image {
+    width: 100%;
+}

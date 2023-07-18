@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -14,7 +15,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        return 'Post - Index';
+        $posts = Post::paginate(10);
+        $posts->each(function ($post) {
+            $post->content = Str::limit($post->content, 150, '...');
+        });
+
+        return Inertia::render(
+            'Post/Index',
+            [
+                'posts' => $posts,
+                'pagination_links' => $posts->links()->elements
+            ]
+        );
     }
 
     /**
