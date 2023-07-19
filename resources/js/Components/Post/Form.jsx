@@ -6,12 +6,14 @@ export default function Form({ action }) {
     const { data, setData, post, processing, errors, recentlySuccessful } = useForm({
         title: '',
         content: '',
+        description: '',
         cover_image: null,
     });
 
     function clearForm() {
         document.getElementById('title').value = "";
         document.getElementById('content').value = "";
+        document.getElementById('description').value = "";
         document.getElementById('cover_image').value = "";
         document.getElementById('image-preview').src = '';
     }
@@ -70,6 +72,26 @@ export default function Form({ action }) {
                     {errors.content && (
                         <div className={styles.validation_error}>
                             {errors.content}
+                        </div>
+                    )}
+                </div>
+                <div className="form-group mt-2">
+                    <label className="fw-bold" htmlFor="description">Description (optional)</label>
+                    <textarea
+                        type="text"
+                        className={`form-control ${errors.description ? 'is-invalid' : ''}`}
+                        rows="3"
+                        id="description"
+                        name="description"
+                        onChange={(e) => setData('description', e.target.value)}
+                    ></textarea>
+                    <div id="descriptionHelp" class="form-text">
+                        Brief description that will be displayed in the card post (max of 150 characters).
+                        If not informed, the beginning of the post content will be used.
+                    </div>
+                    {errors.description && (
+                        <div className={styles.validation_error}>
+                            {errors.description}
                         </div>
                     )}
                 </div>

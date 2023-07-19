@@ -45,6 +45,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'description' => 'max:150',
             'cover_image' => 'image|nullable'
         ]);
 
@@ -54,6 +55,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request->title,
             'content' => $request->content,
+            'description' => $request->description,
             'cover_image' => $imageName,
             'user_id' => auth()->user()->id
         ]);
