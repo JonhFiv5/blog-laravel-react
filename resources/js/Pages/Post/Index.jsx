@@ -12,9 +12,10 @@ export default function Index({ posts, pagination_links }) {
             <div className={styles.posts_container}>
                 {posts.data.map(post => (
                     <PostCard
-                        title={post.id}
+                        title={post.title}
                         imageSrc={post.cover_image}
                         content={post.content}
+                        show_route={post.show_route}
                         key={post.id}
                     />
                 ))}

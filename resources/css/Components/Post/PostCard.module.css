@@ -3,6 +3,16 @@
 .card_container {
     margin: 1em;
     width: 20%;
+    height: 100%;
+    transition: 0.2s;
+}
+
+.card_container:hover {
+    transform: scale(1.05);
+}
+
+.show_button {
+    border: none;
 }
 
 .card_image {

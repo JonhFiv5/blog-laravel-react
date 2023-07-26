@@ -18,6 +18,7 @@ class PostController extends Controller
         $posts = Post::paginate(10);
         $posts->each(function ($post) {
             $post->content = Str::limit($post->content, 150, '...');
+            $post->show_route = route('post.show', $post->id);
         });
 
         return Inertia::render(
@@ -68,7 +69,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return Inertia::render('Post/Show', ['post' => $post]);
     }
 
     /**

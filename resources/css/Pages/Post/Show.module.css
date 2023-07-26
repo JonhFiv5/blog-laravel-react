@@ -1,0 +1,15 @@
+.image_container {
+    display: flex;
+    justify-content: center;
+}
+
+.image_container img {
+    width: 50%;
+    border-radius: 1rem;
+}
+
+.title_container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
