@@ -4,7 +4,13 @@
     background-color: var(--main-blue);
 }
 
-.blog_navbar_text {
+.blog_navbar_link {
     color: white;
     font-weight: bold;
+    background: none;
+    border: none;
+}
+
+.blog_navbar_link:hover {
+    color: var(--light-blue);
 }

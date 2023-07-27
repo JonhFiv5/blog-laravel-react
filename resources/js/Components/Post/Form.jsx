@@ -85,7 +85,7 @@ export default function Form({ action }) {
                         name="description"
                         onChange={(e) => setData('description', e.target.value)}
                     ></textarea>
-                    <div id="descriptionHelp" class="form-text">
+                    <div id="descriptionHelp" className="form-text">
                         Brief description that will be displayed in the card post (max of 150 characters).
                         If not informed, the beginning of the post content will be used.
                     </div>

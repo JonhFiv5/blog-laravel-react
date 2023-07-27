@@ -25,7 +25,8 @@ class PostController extends Controller
             'Post/Index',
             [
                 'posts' => $posts,
-                'pagination_links' => $posts->links()->elements
+                'pagination_links' => $posts->links()->elements,
+                'dropdown_links' => $this->getDropdownLinks()
             ]
         );
     }
@@ -35,7 +36,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Post/Create', ['action' => route('post.store')]);
+        return Inertia::render(
+            'Post/Create',
+            [
+                'action' => route('post.store'),
+                'dropdown_links' => $this->getDropdownLinks()
+            ]
+        );
     }
 
     /**
@@ -69,7 +76,13 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return Inertia::render('Post/Show', ['post' => $post]);
+        return Inertia::render(
+            'Post/Show',
+            [
+                'post' => $post,
+                'dropdown_links' => $this->getDropdownLinks()
+            ]
+        );
     }
 
     /**
@@ -94,6 +107,16 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    private function getDropdownLinks()
+    {
+        return [
+            [
+                'label' => 'New Post',
+                'url' => route('post.create')
+            ],
+        ];
     }
 
 }

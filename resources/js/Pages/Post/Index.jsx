@@ -3,9 +3,9 @@ import PostCard from "@/Components/Post/PostCard";
 import styles from "@/../css/Pages/Post/Index.module.css";
 import Pagination from "@/Components/Global/Pagination";
 
-export default function Index({ posts, pagination_links }) {
+export default function Index({ posts, pagination_links, dropdown_links }) {
     return (
-        <BlogLayout title="Posts">
+        <BlogLayout title="Posts" dropdown_links={dropdown_links}>
             <div className={styles.main_title_container}>
                 <h1 className={styles.main_title}>SIMPLE BLOG</h1>
             </div>
