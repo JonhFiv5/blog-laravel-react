@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Utils\Image;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -23,6 +24,26 @@ class PostController extends Controller
 
         return Inertia::render(
             'Post/Index',
+            [
+                'posts' => $posts,
+                'pagination_links' => $posts->links()->elements,
+                'dropdown_links' => $this->getDropdownLinks()
+            ]
+        );
+    }
+
+    public function userPosts() {
+        $userId = Auth::id();
+        $posts = Post::where('user_id', $userId)->orderBy('updated_at', 'desc')->paginate(10);
+
+        $posts->each(function ($post) {
+            $post->show_route = route('post.show', $post->id);
+            $post->update_route = route('post.edit', $post->id);
+            $post->delete_route = route('post.destroy', $post->id);
+        });
+
+        return Inertia::render(
+            'Post/UserPosts',
             [
                 'posts' => $posts,
                 'pagination_links' => $posts->links()->elements,
@@ -90,7 +111,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return 'Edit';
     }
 
     /**
@@ -106,17 +127,26 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        return 'Destroy';
     }
 
     private function getDropdownLinks()
     {
-        return [
+        $links = [
             [
                 'label' => 'New Post',
                 'url' => route('post.create')
             ],
         ];
+
+        if(Auth::check()) {
+            array_push($links, [
+                'label' => 'My Posts',
+                'url' => route('post.user_posts')
+            ]);
+        }
+
+        return $links; 
     }
 
 }
